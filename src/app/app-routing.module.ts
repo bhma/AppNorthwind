@@ -1,7 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [];
+import { CustomersComponent } from './views/customers/customers.component';
+import { HomeComponent } from './views/home/home.component';
+
+const routes: Routes = [
+    { path: 'customers', component: CustomersComponent },
+    { path: '', component: HomeComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
