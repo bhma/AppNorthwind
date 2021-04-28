@@ -8,17 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomersComponent implements OnInit {
 
-    FLAG: string = 'BHMA';
+    FLAG: string = 'newCustomer';
 
-    constructor(
-        private router: Router
-    ) { }
+    constructor() { }
 
     ngOnInit(): void {
-    }
-
-    addCustomer() {
-        
     }
 
 }

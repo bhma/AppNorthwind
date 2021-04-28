@@ -10,16 +10,18 @@ import { ProductDetailComponent } from './views/product-detail/product-detail.co
 import { ProductsComponent } from './views/products/products.component';
 
 const routes: Routes = [
+    { path: 'home', component: HomeComponent },
+    
     { path: 'customers', component: CustomersComponent },
     { path: 'customer/:id', component: CustomerDetailComponent },
-
+    
     { path: 'orders', component: OrdersComponent },
     { path: 'order/:id', component: OrderDetailComponent },
-
+    
     { path: 'products', component: ProductsComponent },
     { path: 'product/:id', component: ProductDetailComponent },
-
-    { path: '', component: HomeComponent },
+    
+    { path: '', pathMatch: 'full', redirectTo: 'home' },
 ];
 
 @NgModule({
