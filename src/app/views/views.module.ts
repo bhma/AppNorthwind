@@ -5,6 +5,11 @@ import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { CustomersComponent } from './customers/customers.component';
 import { HomeComponent } from './home/home.component';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
+import { OrdersComponent } from './orders/orders.component';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
+import { ProductsComponent } from './products/products.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -13,7 +18,12 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
     MenuBarComponent,
     CustomersComponent,
     HomeComponent,
-    CustomerDetailComponent
+    CustomerDetailComponent,
+    OrdersComponent,
+    OrderDetailComponent,
+    ProductsComponent,
+    ProductDetailComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -21,8 +31,7 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
   ],
   exports: [
       MenuBarComponent,
-      CustomersComponent,
-      HomeComponent
+      FooterComponent
   ]
 })
 export class ViewsModule { 

@@ -1,15 +1,24 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-customers',
-  templateUrl: './customers.component.html',
-  styleUrls: ['./customers.component.css']
+    selector: 'app-customers',
+    templateUrl: './customers.component.html',
+    styleUrls: ['./customers.component.css']
 })
 export class CustomersComponent implements OnInit {
 
-  constructor() { }
+    FLAG: string = 'BHMA';
 
-  ngOnInit(): void {
-  }
+    constructor(
+        private router: Router
+    ) { }
+
+    ngOnInit(): void {
+    }
+
+    addCustomer() {
+        
+    }
 
 }

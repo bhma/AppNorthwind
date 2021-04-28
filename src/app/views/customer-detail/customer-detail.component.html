@@ -1,1 +1,16 @@
-<p>customer-detail works!</p>
+<div class="d-flex justify-content-between align-items-center">
+    <h1>
+        <span *ngIf="customerId === 'newCustomer'">Novo Cliente</span>
+        <span *ngIf="customerId !== 'newCustomer'">Detalhes do Cliente {{ customerId }}</span>
+    </h1>
+    <div>
+        <button class="btn btn-success mr-2 " >
+            <img src="../../../assets/icons/save-24.png" alt="deletar">
+            Salvar
+        </button>
+        <button class="btn btn-danger " >
+            <img src="../../../assets/icons/trash.png" alt="deletar">
+            Excluir
+        </button>
+    </div>
+</div>
