@@ -1,51 +1,53 @@
-<div class="d-flex justify-content-between align-items-center">
-    <h1>
-        Lista de Clientes
-    </h1>
-    <button class="btn btn-dark d-flex align-items-center" [routerLink]="['/customer', FLAG]" >
-        <img class="mr-2 text-white" src="../../../assets/icons/plus.svg" alt="icone mais">
-        Adinionar
-    </button>
-</div>
-<div class="mt-3">
-    <table class="table table-striped">
-        <thead>
-            <th scope="col">Nome da Empresa</th>
-            <th scope="col">Nome para contato</th>
-            <th scope="col">Cidade</th>
-            <th scope="col">Telefone</th>
-        </thead>
-        <tbody>
-            <tr >
-                <td [routerLink]="['/customer', 'NCMA']" class="pointer">Alfreds Futterkiste</td>
-                <td>Maria Anders</td>
-                <td>Berlin</td>
-                <td>030-0074321</td>
-            </tr>
-            <tr>
-                <td [routerLink]="['/customer', 'AVIA']" class="pointer">Alfreds Futterkiste</td>
-                <td>Maria Anders</td>
-                <td>Berlin</td>
-                <td>030-0074321</td>
-            </tr>
-            <tr>
-                <td [routerLink]="['/customer', 'ACPMA']" class="pointer">Alfreds Futterkiste</td>
-                <td>Maria Anders</td>
-                <td>Berlin</td>
-                <td>030-0074321</td>
-            </tr>
-            <tr>
-                <td [routerLink]="['/customer']" class="pointer">Alfreds Futterkiste</td>
-                <td>Maria Anders</td>
-                <td>Berlin</td>
-                <td>030-0074321</td>
-            </tr>
-            <tr>
-                <td [routerLink]="['/customer']" class="pointer">Alfreds Futterkiste</td>
-                <td>Maria Anders</td>
-                <td>Berlin</td>
-                <td>030-0074321</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1>
+                Lista de Clientes
+            </h1>
+            <button class="btn btn-dark d-flex align-items-center" [routerLink]="['/customer', FLAG]" >
+                <img class="mr-2 text-white" src="../../../assets/icons/plus.svg" alt="icone mais">
+                Adinionar
+            </button>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <th scope="col">Nome da Empresa</th>
+                <th scope="col">Nome para contato</th>
+                <th scope="col">Cidade</th>
+                <th scope="col">Telefone</th>
+            </thead>
+            <tbody>
+                <tr >
+                    <td [routerLink]="['/customer', 'NCMA']" class="pointer">Alfreds Futterkiste</td>
+                    <td>Maria Anders</td>
+                    <td>Berlin</td>
+                    <td>030-0074321</td>
+                </tr>
+                <tr>
+                    <td [routerLink]="['/customer', 'AVIA']" class="pointer">Alfreds Futterkiste</td>
+                    <td>Maria Anders</td>
+                    <td>Berlin</td>
+                    <td>030-0074321</td>
+                </tr>
+                <tr>
+                    <td [routerLink]="['/customer', 'ACPMA']" class="pointer">Alfreds Futterkiste</td>
+                    <td>Maria Anders</td>
+                    <td>Berlin</td>
+                    <td>030-0074321</td>
+                </tr>
+                <tr>
+                    <td [routerLink]="['/customer']" class="pointer">Alfreds Futterkiste</td>
+                    <td>Maria Anders</td>
+                    <td>Berlin</td>
+                    <td>030-0074321</td>
+                </tr>
+                <tr>
+                    <td [routerLink]="['/customer']" class="pointer">Alfreds Futterkiste</td>
+                    <td>Maria Anders</td>
+                    <td>Berlin</td>
+                    <td>030-0074321</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

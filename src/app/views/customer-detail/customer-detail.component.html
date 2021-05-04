@@ -1,16 +1,87 @@
-<div class="d-flex justify-content-between align-items-center">
-    <h1>
-        <span *ngIf="customerId === 'newCustomer'">Novo Cliente</span>
-        <span *ngIf="customerId !== 'newCustomer'">Detalhes do Cliente {{ customerId }}</span>
-    </h1>
-    <div>
-        <button class="btn btn-success mr-2 " >
-            <img src="../../../assets/icons/save-24.png" alt="deletar">
-            Salvar
-        </button>
-        <button class="btn btn-danger " >
-            <img src="../../../assets/icons/trash.png" alt="deletar">
-            Excluir
-        </button>
+<div class="card shadow-sm">
+    <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1>
+                <span *ngIf="customerId === 'newCustomer'">Novo Cliente</span>
+                <span *ngIf="customerId !== 'newCustomer'"
+                    >Detalhes do Cliente {{ customerId }}</span
+                >
+            </h1>
+            <div>
+                <button class="btn btn-danger">
+                    <img src="../../../assets/icons/trash.png" alt="btn excluir" />
+                    Excluir
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <form>
+            <div class="row">
+                <div class="form-group col">
+                    <label for="companyName">Company Name</label>
+                    <input id="companyName" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label for="contactName">Contact Name</label>
+                    <input id="contactName" type="text" class="form-control">
+                </div>
+                <div class="form-group col">
+                    <label for="contactTitle">Contact Title</label>
+                    <input id="contactTitle" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label for="address">Address</label>
+                    <input id="address" type="text" class="form-control">
+                </div>
+                <div class="form-group col">
+                    <label for="city">City</label>
+                    <input id="city" type="text" class="form-control">
+                </div>
+                <div class="form-group col">
+                    <label for="region">Region</label>
+                    <input id="region" type="text" class="form-control">
+                </div>
+                <div class="form-group col">
+                    <label for="postalCode">Postal Code</label>
+                    <input id="postalCode" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label for="country">Country</label>
+                    <input id="country" type="text" class="form-control">
+                </div>
+                <div class="form-group col">
+                    <label for="phone">Phone</label>
+                    <input id="phone" type="text" class="form-control">
+                </div>
+                <div class="form-group col">
+                    <label for="fax">Fax</label>
+                    <input id="fax" type="text" class="form-control">
+                </div>
+            </div>
+        </form>
+        <div class="w-100 d-flex justify-content-center">
+            <button class="btn btn-success mr-2">
+                <img
+                    src="../../../assets/icons/save-24.png"
+                    alt="btn salvar"
+                />
+                Salvar
+            </button>
+            <button class="btn btn-secondary" [routerLink]="['/customers']">
+                <img
+                    src="../../../assets/icons/back-arrow.png"
+                    alt="btn voltar"
+                    class="icon-size"
+                />
+                Voltar
+            </button>
+        </div>
     </div>
 </div>
