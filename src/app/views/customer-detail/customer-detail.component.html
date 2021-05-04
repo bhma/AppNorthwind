@@ -16,72 +16,72 @@
         </div>
     </div>
     <div class="card-body">
-        <form>
+        <form [formGroup]="formCustomer" (ngSubmit)="onSubmit()">
             <div class="row">
                 <div class="form-group col">
                     <label for="companyName">Company Name</label>
-                    <input id="companyName" type="text" class="form-control">
+                    <input formControlName="companyName" id="companyName" type="text" class="form-control">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col">
                     <label for="contactName">Contact Name</label>
-                    <input id="contactName" type="text" class="form-control">
+                    <input formControlName="contactName" id="contactName" type="text" class="form-control">
                 </div>
                 <div class="form-group col">
                     <label for="contactTitle">Contact Title</label>
-                    <input id="contactTitle" type="text" class="form-control">
+                    <input formControlName="contactTitle" id="contactTitle" type="text" class="form-control">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col">
                     <label for="address">Address</label>
-                    <input id="address" type="text" class="form-control">
+                    <input formControlName="address" id="address" type="text" class="form-control">
                 </div>
                 <div class="form-group col">
                     <label for="city">City</label>
-                    <input id="city" type="text" class="form-control">
+                    <input formControlName="city" id="city" type="text" class="form-control">
                 </div>
                 <div class="form-group col">
                     <label for="region">Region</label>
-                    <input id="region" type="text" class="form-control">
+                    <input formControlName="region" id="region" type="text" class="form-control">
                 </div>
                 <div class="form-group col">
                     <label for="postalCode">Postal Code</label>
-                    <input id="postalCode" type="text" class="form-control">
+                    <input formControlName="postalCode" id="postalCode" type="text" class="form-control">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col">
                     <label for="country">Country</label>
-                    <input id="country" type="text" class="form-control">
+                    <input formControlName="country" id="country" type="text" class="form-control">
                 </div>
                 <div class="form-group col">
                     <label for="phone">Phone</label>
-                    <input id="phone" type="text" class="form-control">
+                    <input formControlName="phone" id="phone" type="text" class="form-control">
                 </div>
                 <div class="form-group col">
                     <label for="fax">Fax</label>
-                    <input id="fax" type="text" class="form-control">
+                    <input formControlName="fax" id="fax" type="text" class="form-control">
                 </div>
             </div>
+            <div class="w-100 d-flex justify-content-center">
+                <button class="btn btn-success mr-2" type="submit">
+                    <img
+                        src="../../../assets/icons/save-24.png"
+                        alt="btn salvar"
+                    />
+                    Salvar
+                </button>
+                <button class="btn btn-secondary" [routerLink]="['/customers']">
+                    <img
+                        src="../../../assets/icons/back-arrow.png"
+                        alt="btn voltar"
+                        class="icon-size"
+                    />
+                    Voltar
+                </button>
+            </div>
         </form>
-        <div class="w-100 d-flex justify-content-center">
-            <button class="btn btn-success mr-2">
-                <img
-                    src="../../../assets/icons/save-24.png"
-                    alt="btn salvar"
-                />
-                Salvar
-            </button>
-            <button class="btn btn-secondary" [routerLink]="['/customers']">
-                <img
-                    src="../../../assets/icons/back-arrow.png"
-                    alt="btn voltar"
-                    class="icon-size"
-                />
-                Voltar
-            </button>
-        </div>
     </div>
 </div>

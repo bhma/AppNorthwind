@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-customer-detail',
@@ -8,17 +8,37 @@ import { BehaviorSubject } from 'rxjs';
     styleUrls: ['./customer-detail.component.css']
 })
 export class CustomerDetailComponent implements OnInit {
+    formCustomer: FormGroup;
+
     customerId: string;
 
     constructor(
-        private router: Router,
-        private actRoute: ActivatedRoute
+        private actRoute: ActivatedRoute,
+        private fb: FormBuilder
     ) { }
 
     ngOnInit(): void {
         this.actRoute.params.subscribe((param) => {
             this.customerId = param.id;
         });
+
+        this.formCustomer = this.fb.group({
+            companyName: [null],
+            contactName: [null],
+            contactTitle: [null],
+            address: [null],
+            city: [null],
+            region: [null],
+            postalCode: [null],
+            country: [null],
+            phone: [null],
+            fax: [null],
+        });
+
+    }
+
+    onSubmit(){
+        console.log(this.formCustomer);
     }
 
 }
