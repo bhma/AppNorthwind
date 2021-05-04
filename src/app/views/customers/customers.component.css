@@ -4,3 +4,6 @@
 .icon{
     width: 22px;
 }
+table td {
+    vertical-align: middle;
+}

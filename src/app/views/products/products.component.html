@@ -16,52 +16,17 @@
                 <th scope="col">Qtd. em estoque</th>
             </thead>
             <tbody>
-                <tr >
-                    <td>11</td>
-                    <td [routerLink]="['/product', 1]" class="pointer">Queso Cabrales</td>
-                    <td>5</td>
-                    <td>4</td>
-                    <td>1 kg pkg.</td>
-                    <td>21,0000</td>
-                    <td>22</td>
-                </tr>
-                <tr >
-                    <td>11</td>
-                    <td [routerLink]="['/product', 1]" class="pointer">Queso Cabrales</td>
-                    <td>5</td>
-                    <td>4</td>
-                    <td>1 kg pkg.</td>
-                    <td>21,0000</td>
-                    <td>22</td>
-                </tr>
-                <tr >
-                    <td>11</td>
-                    <td [routerLink]="['/product', 1]" class="pointer">Queso Cabrales</td>
-                    <td>5</td>
-                    <td>4</td>
-                    <td>1 kg pkg.</td>
-                    <td>21,0000</td>
-                    <td>22</td>
-                </tr>
-                <tr >
-                    <td>11</td>
-                    <td [routerLink]="['/product', 1]" class="pointer">Queso Cabrales</td>
-                    <td>5</td>
-                    <td>4</td>
-                    <td>1 kg pkg.</td>
-                    <td>21,0000</td>
-                    <td>22</td>
-                </tr>
-                <tr >
-                    <td>11</td>
-                    <td [routerLink]="['/product', 1]" class="pointer">Queso Cabrales</td>
-                    <td>5</td>
-                    <td>4</td>
-                    <td>1 kg pkg.</td>
-                    <td>21,0000</td>
-                    <td>22</td>
+                <tr *ngFor="let p of Products | paginate: { itemsPerPage: 7, currentPage: pagAtual }" >
+                    <td>{{ p.productID }}</td>
+                    <td [routerLink]="['/product', 1]" class="pointer">{{ p.productName }}</td>
+                    <td>{{ p.suplierID }}</td>
+                    <td>{{ p.categoryID }}</td>
+                    <td>{{ p.qtdPerUnit }}</td>
+                    <td>{{ p.unitPrice }}</td>
+                    <td>{{ p.qtdStok }}</td>
                 </tr>
             </tbody>
+            <pagination-controls class="pagination page-item page-item-current" (pageChange)="pagAtual = $event" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
         </table>
     </div>
 </div>

@@ -10,6 +10,8 @@ import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { FooterComponent } from './footer/footer.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 
 
@@ -28,6 +30,7 @@ import { FooterComponent } from './footer/footer.component';
   imports: [
     CommonModule,
     AppRoutingModule,
+    NgxPaginationModule
   ],
   exports: [
       MenuBarComponent,
