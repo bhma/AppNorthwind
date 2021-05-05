@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { CustomerService } from 'src/app/services/customer.service';
 
 @Component({
     selector: 'app-customer-detail',
@@ -14,7 +15,8 @@ export class CustomerDetailComponent implements OnInit {
 
     constructor(
         private actRoute: ActivatedRoute,
-        private fb: FormBuilder
+        private fb: FormBuilder,
+        private cS: CustomerService
     ) { }
 
     ngOnInit(): void {

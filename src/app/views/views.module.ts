@@ -32,7 +32,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     AppRoutingModule,
     NgxPaginationModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports: [
       MenuBarComponent,
