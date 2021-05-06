@@ -1,12 +1,13 @@
 export interface IProduct{
-    productID: number;
-    productName: string;
-    supplierId: number;
-    categoryId: number;
-    qtdPerUnit: string;
-    unitPrice: string;
-    unitsInStock: number;
-    unitsOnOrder: number;
-    reOrderLevel: number;
-    discontinued: boolean;
+    ProductID: number;
+    ProductName: string;
+    SupplierID: number;
+    CategoryID: number;
+    QuantityPerUnit: string;
+    UnitPrice: string;
+    UnitsInStock: number;
+    UnitsOnOrder: number;
+    ReorderLevel: number;
+    Discontinued: boolean;
+    qtdOrdered: number;
 }

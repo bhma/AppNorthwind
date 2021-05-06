@@ -92,7 +92,6 @@ class CustomerService{
             console.error(error);
         }
     }
-
     async delete(customerId: string){
         try {
             const tra = db.transaction();

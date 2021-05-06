@@ -23,7 +23,8 @@ routes.delete('/delcustomer', customerController.delete);
 routes.get('/products', productController.getProduts);
 
 //Rotas para Orders
-routes.post('/neworder', orderController.getOrders);
+routes.get('/orders', orderController.getOrders);
+routes.post('/neworder', orderController.create);
 // --->
 
 export { routes };

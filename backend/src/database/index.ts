@@ -1,4 +1,4 @@
-import { ConnectionPool, TYPES } from 'mssql';
+import { ConnectionPool, TYPES, PreparedStatement } from 'mssql';
 
 const db = new ConnectionPool('mssql://sa:root12@localhost/Northwind');
 
@@ -17,4 +17,4 @@ try {
     console.error(error);    
 }
 
-export { db, TYPES };
+export { db, TYPES, PreparedStatement };
