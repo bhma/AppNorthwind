@@ -1,13 +1,13 @@
 export interface ICustomer{
-    customerID: number;
-    companyName: string;
-    contactName: string;
-    contactTitle: string;
-    address: string;
-    city: string;
-    region: string;
-    postalCode: string;
-    country: string;
-    phone: string;
-    fax: string;
+    CustomerID: number;
+    CompanyName: string;
+    ContactName: string;
+    ContactTitle: string;
+    Address: string;
+    City: string;
+    Region: string;
+    PostalCode: string;
+    Country: string;
+    Phone: string;
+    Fax: string;
 }
