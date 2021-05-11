@@ -1,11 +1,16 @@
 <div class="card shadow-sm">
     <div class="card-body">
         <div class="d-flex justify-content-between align-items-center">
-            <h1>
-                Lista de Clientes
-            </h1>
-            <button class="btn btn-dark d-flex align-items-center" [routerLink]="['/customer', FLAG]" >
-                <img class="mr-2 text-white" src="../../../assets/icons/plus.svg" alt="icone mais">
+            <h1>Lista de Clientes</h1>
+            <button
+                class="btn btn-dark d-flex align-items-center"
+                [routerLink]="['/customer', FLAG]"
+            >
+                <img
+                    class="mr-2 text-white"
+                    src="../../../assets/icons/plus.svg"
+                    alt="icone mais"
+                />
                 Adinionar
             </button>
         </div>
@@ -17,37 +22,16 @@
                 <th scope="col">Telefone</th>
             </thead>
             <tbody>
-                <tr >
-                    <td [routerLink]="['/customer', 'NCMA']" class="pointer">Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td>Berlin</td>
-                    <td>030-0074321</td>
-                </tr>
-                <tr>
-                    <td [routerLink]="['/customer', 'AVIA']" class="pointer">Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td>Berlin</td>
-                    <td>030-0074321</td>
-                </tr>
-                <tr>
-                    <td [routerLink]="['/customer', 'ACPMA']" class="pointer">Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td>Berlin</td>
-                    <td>030-0074321</td>
-                </tr>
-                <tr>
-                    <td [routerLink]="['/customer']" class="pointer">Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td>Berlin</td>
-                    <td>030-0074321</td>
-                </tr>
-                <tr>
-                    <td [routerLink]="['/customer']" class="pointer">Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td>Berlin</td>
-                    <td>030-0074321</td>
+                <tr *ngFor="let c of customerList | paginate: { itemsPerPage: 10, currentPage: pagAtual }" >
+                    <td [routerLink]="['/customer', c.CustomerID]" class="pointer">
+                        {{ c.CompanyName }}
+                    </td>
+                    <td>{{ c.ContactName }}</td>
+                    <td>{{ c.City }}</td>
+                    <td>{{ c.Phone }}</td>
                 </tr>
             </tbody>
         </table>
+        <pagination-controls class="pagination page-item page-item-current justify-content-center" (pageChange)="pagAtual = $event" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
     </div>
 </div>

@@ -14,8 +14,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
-
-
 @NgModule({
   declarations: [
     MenuBarComponent,
@@ -26,17 +24,19 @@ import { ReactiveFormsModule } from '@angular/forms';
     OrderDetailComponent,
     ProductsComponent,
     ProductDetailComponent,
-    FooterComponent
+    FooterComponent,
+    
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
     NgxPaginationModule,
     ReactiveFormsModule,
+    
   ],
   exports: [
       MenuBarComponent,
-      FooterComponent
+      FooterComponent,
   ]
 })
 export class ViewsModule { 
