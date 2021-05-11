@@ -15,6 +15,7 @@ const orderController = new OrderController()
 
 // Rotas para Customers
 routes.get('/customers', customerController.getCustomers);
+routes.get('/customerbyid', customerController.getCustomerById);
 routes.post('/newcustomer', customerController.create);
 routes.put('/updatecustomer', customerController.update);
 routes.delete('/delcustomer', customerController.delete);

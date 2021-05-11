@@ -12,6 +12,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { FooterComponent } from './footer/footer.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AlertModalComponent } from './alert-modal/alert-modal.component';
 
 
 @NgModule({
@@ -25,18 +26,18 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProductsComponent,
     ProductDetailComponent,
     FooterComponent,
-    
+    AlertModalComponent,
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
     NgxPaginationModule,
     ReactiveFormsModule,
-    
   ],
   exports: [
       MenuBarComponent,
       FooterComponent,
+      AlertModalComponent
   ]
 })
 export class ViewsModule { 

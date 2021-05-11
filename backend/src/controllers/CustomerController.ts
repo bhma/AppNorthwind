@@ -15,6 +15,19 @@ class CustomerController {
         }
     }
 
+    async getCustomerById(req: Request, res: Response) {
+        try {
+            const CustomerID = req.query.CustomerID;
+            const customerService = new CustomerService();
+            const customerList = await customerService.getCustomerById(CustomerID.toString());
+            const customerFinded = customerList.find(customer => customer.CustomerID === CustomerID);
+            res.json(customerFinded);
+        } catch (error) {
+            console.warn('Erro no Customers Controller: get Customers');
+            console.error(error);
+        }
+    }
+
     async create(req: Request, res: Response) {
         const {
             CustomerID,
@@ -90,13 +103,11 @@ class CustomerController {
     }
 
     async delete(req: Request, res: Response) {
-        const {
-            customerID
-        } = req.body;
+        const customerID = req.query.CustomerID;
 
         try {
             const customerService = new CustomerService();
-            const result = await customerService.delete(customerID);
+            const result = await customerService.delete(customerID.toString());
             res.json({ rowsAffected: result });
         } catch (error) {
             console.warn('Erro no Customers Controller: delete');

@@ -12,19 +12,14 @@ export class CustomersComponent implements OnInit {
 
     FLAG: string = 'newCustomer';
     pagAtual: number = 1;
-    customer$: Observable<ICustomer[]>;
-    customerList: ICustomer[];
+    customerList$: Observable<ICustomer[]>;
 
     constructor(
         private cService: CustomerService,
     ) { }
 
     ngOnInit(): void {
-        this.customer$ = this.cService.getCustomers();
-        this.customer$.subscribe(data => {
-            this.customerList = data;
-        });
-        console.log(this.customerList);
+        this.customerList$ = this.cService.getCustomers();
     }
 
 }

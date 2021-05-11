@@ -22,7 +22,7 @@
                 <th scope="col">Telefone</th>
             </thead>
             <tbody>
-                <tr *ngFor="let c of customerList | paginate: { itemsPerPage: 10, currentPage: pagAtual }" >
+                <tr *ngFor="let c of customerList$ | async | paginate: { itemsPerPage: 10, currentPage: pagAtual }" >
                     <td [routerLink]="['/customer', c.CustomerID]" class="pointer">
                         {{ c.CompanyName }}
                     </td>

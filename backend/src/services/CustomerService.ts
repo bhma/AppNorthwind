@@ -15,6 +15,21 @@ class CustomerService{
         }
     }
 
+    async getCustomerById(customerID: string){
+        try {
+            const tra = db.transaction();
+            const transBegin = await tra.begin();
+            const requestBd = transBegin.request();
+            requestBd.input('customerID', TYPES.NVarChar, customerID);
+            const result = await requestBd.query<ICustomer>('SELECT * FROM Customers WHERE CustomerID = @customerID;');
+            await transBegin.commit();
+            return result.recordset;
+        } catch (error) {
+            console.warn('Erro no customer service: getCustomer by ID');
+            console.error(error);
+        }
+    }
+
     async create(customer: ICustomer){
         const {
             CustomerID,
@@ -92,6 +107,7 @@ class CustomerService{
             console.error(error);
         }
     }
+
     async delete(customerId: string){
         try {
             const tra = db.transaction();

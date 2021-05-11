@@ -1,6 +1,6 @@
 import { environment } from './../../environments/environment.prod';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { ICustomer } from '../model/Customer.model';
 import { filter, take, tap } from 'rxjs/operators';
 
@@ -25,12 +25,26 @@ export class CustomerService {
     }
 
     getCustomerById(customerId: string){
-        // this.getCustomers()
-        // .subscribe(customerList => {
-        //     this.customerList = customerList;
-        // });
-
-        // return this.customerList.find(element => element.CustomerID === customerId);
+        let params = new HttpParams();
+        params = params.append('CustomerID', customerId);
+        return this.http.get<ICustomer>(`${this.API}/api/customerbyid`, { params: params })
+        .pipe(take(1));
     }
 
+    saveCustomer(newCustomer: ICustomer){
+        return this.http.post<ICustomer>(`${this.API}/api/newcustomer`, newCustomer)
+        .pipe(take(1));
+    }
+
+    updateCustomer(updtCustomer: ICustomer){
+        return this.http.put<ICustomer>(`${this.API}/api/updatecustomer`, updtCustomer)
+        .pipe(take(1));
+    }
+
+    deleteCustomer(customerId: string){
+        let params = new HttpParams();
+        params = params.append('CustomerID', customerId);
+        return this.http.delete<ICustomer>(`${this.API}/api/delcustomer`, { params: params } )
+        .pipe(take(1));
+    }
 }

@@ -8,7 +8,7 @@
                 >
             </h1>
             <div>
-                <button class="btn btn-danger">
+                <button class="btn btn-danger" (click)="onDelete()">
                     <img src="../../../assets/icons/trash.png" alt="btn excluir" />
                     Excluir
                 </button>
@@ -18,46 +18,50 @@
     <div class="card-body">
         <form [formGroup]="formCustomer" (ngSubmit)="onSubmit()">
             <div class="row">
+                <div class="form-group col-4">
+                    <label for="customerId">ID do Cliente</label>
+                    <input formControlName="CustomerID" id="customerId" type="text" class="form-control">
+                </div>
                 <div class="form-group col">
-                    <label for="companyName">Company Name</label>
+                    <label for="companyName">Nome da Empresa</label>
                     <input formControlName="CompanyName" id="companyName" type="text" class="form-control">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col">
-                    <label for="contactName">Contact Name</label>
+                    <label for="contactName">Nome para Contato</label>
                     <input formControlName="ContactName" id="contactName" type="text" class="form-control">
                 </div>
                 <div class="form-group col">
-                    <label for="contactTitle">Contact Title</label>
+                    <label for="contactTitle">Cargo do Contato</label>
                     <input formControlName="ContactTitle" id="contactTitle" type="text" class="form-control">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col">
-                    <label for="address">Address</label>
+                    <label for="address">Endereço</label>
                     <input formControlName="Address" id="address" type="text" class="form-control">
                 </div>
                 <div class="form-group col">
-                    <label for="city">City</label>
+                    <label for="city">Cidade</label>
                     <input formControlName="City" id="city" type="text" class="form-control">
                 </div>
                 <div class="form-group col">
-                    <label for="region">Region</label>
+                    <label for="region">Estado</label>
                     <input formControlName="Region" id="region" type="text" class="form-control">
                 </div>
                 <div class="form-group col">
-                    <label for="postalCode">Postal Code</label>
+                    <label for="postalCode">CEP</label>
                     <input formControlName="PostalCode" id="postalCode" type="text" class="form-control">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col">
-                    <label for="country">Country</label>
+                    <label for="country">País</label>
                     <input formControlName="Country" id="country" type="text" class="form-control">
                 </div>
                 <div class="form-group col">
-                    <label for="phone">Phone</label>
+                    <label for="phone">Telefone</label>
                     <input formControlName="Phone" id="phone" type="text" class="form-control">
                 </div>
                 <div class="form-group col">
