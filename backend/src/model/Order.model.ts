@@ -1,16 +1,16 @@
 export interface IOrder{
     OrderID?: number;
-    customerID: string;
+    CustomerID: string;
     EmployeeID?: number;
-    orderDate: Date;
-    requireDate?: Date;
-    shippedDate: Date;
-    shipVia?: number;
-    freight: number;
-    shipName?: string;
-    shipAddress: string;
-    shipCity: string;
-    shipRegion: string;
-    shipPostalCode: string;
-    shipCountry: string;
+    OrderDate: Date;
+    RequireDate?: Date;
+    ShippedDate: Date;
+    ShipVia?: number;
+    Freight: number;
+    ShipName?: string;
+    ShipAddress: string;
+    ShipCity: string;
+    ShipRegion: string;
+    ShipPostalCode: string;
+    ShipCountry: string;
 }

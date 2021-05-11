@@ -16,32 +16,48 @@ class OrderService{
         }
     }
 
+
+    async getOrderById(orderID: number){
+        try {
+            const tra = db.transaction();
+            const transBegin = await tra.begin();
+            const requestBd = transBegin.request();
+            requestBd.input('orderID', TYPES.Int, orderID);
+            const result = await requestBd.query<IOrder>('SELECT * FROM Orders WHERE OrderID = @orderID;');
+            await transBegin.commit();
+            return result.recordset;
+        } catch (error) {
+            console.warn('Erro no order service: getOrder by ID');
+            console.error(error);
+        }
+    }
+
     async create(order: IOrder, productList: IProduct[]){
         const {
-            customerID,
-            orderDate,
-            shippedDate,
-            freight,
-            shipAddress,
-            shipCity,
-            shipRegion,
-            shipPostalCode,
-            shipCountry,
+            CustomerID,
+            OrderDate,
+            ShippedDate,
+            Freight,
+            ShipAddress,
+            ShipCity,
+            ShipRegion,
+            ShipPostalCode,
+            ShipCountry,
         } = order;
         try {
             // Transação na tabela Orders
             const transactionOrder = db.transaction();
             const transOrderBegin = await transactionOrder.begin();
             const requestOrderBd = transOrderBegin.request();
-            requestOrderBd.input('customerID', TYPES.NVarChar, customerID);
-            requestOrderBd.input('orderDate', TYPES.Date, orderDate);
-            requestOrderBd.input('shippedDate', TYPES.Date, shippedDate);
-            requestOrderBd.input('freight', TYPES.Real, freight);
-            requestOrderBd.input('shipAddress', TYPES.NVarChar, shipAddress);
-            requestOrderBd.input('shipCity', TYPES.NVarChar, shipCity);
-            requestOrderBd.input('shipRegion', TYPES.NVarChar, shipRegion);
-            requestOrderBd.input('shipPostalCode', TYPES.NVarChar, shipPostalCode);
-            requestOrderBd.input('shipCountry', TYPES.NVarChar, shipCountry);
+            requestOrderBd.input('customerID', TYPES.NVarChar, CustomerID);
+            requestOrderBd.input('orderDate', TYPES.Date, OrderDate);
+            requestOrderBd.input('shippedDate', TYPES.Date, ShippedDate);
+            requestOrderBd.input('freight', TYPES.Real, Freight);
+            requestOrderBd.input('shipAddress', TYPES.NVarChar, ShipAddress);
+            requestOrderBd.input('shipCity', TYPES.NVarChar, ShipCity);
+            requestOrderBd.input('shipRegion', TYPES.NVarChar, ShipRegion);
+            requestOrderBd.input('shipPostalCode', TYPES.NVarChar, ShipPostalCode);
+            requestOrderBd.input('shipCountry', TYPES.NVarChar, ShipCountry);
             const resultOrder = await requestOrderBd.query<IOrder>(`
                 INSERT INTO Orders (CustomerID, OrderDate, ShippedDate, Freight, ShipAddress, ShipCity,
                                     ShipRegion, ShipPostalCode, ShipCountry)

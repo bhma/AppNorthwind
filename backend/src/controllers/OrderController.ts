@@ -12,34 +12,48 @@ class OrderController {
             const resultOrder = await orderService.getOrders();
             res.json(resultOrder);
         } catch (error) {
-            console.warn('Erro no Customers Controller: get Customers');
+            console.warn('Erro no Orders Controller: get Orders');
             console.error(error);
         }
     }
 
+    async getOrderById(req: Request, res: Response) {
+        try {
+            const OrderID = parseInt(req.params.OrderID);
+            const orderService = new OrderService();
+            const orderList = await orderService.getOrderById(OrderID);
+            const orderFinded = orderList.find(order => order.OrderID === OrderID);
+            res.json(orderFinded);
+        } catch (error) {
+            console.warn('Erro no Order Controller: get Order by id');
+            console.error(error);
+        }
+
+    }
+
     async create(req: Request, res: Response) {
         const {
-            customerID,
-            orderDate,
-            shippedDate,
-            freight,
-            shipAddress,
-            shipCity,
-            shipRegion,
-            shipPostalCode,
-            shipCountry,
+            CustomerID,
+            OrderDate,
+            ShippedDate,
+            Freight,
+            ShipAddress,
+            ShipCity,
+            ShipRegion,
+            ShipPostalCode,
+            ShipCountry,
             productList
         } = req.body;
         const newOrder: IOrder = {
-            customerID,
-            orderDate,
-            shippedDate,
-            freight,
-            shipAddress,
-            shipCity,
-            shipRegion,
-            shipPostalCode,
-            shipCountry
+            CustomerID,
+            OrderDate,
+            ShippedDate,
+            Freight,
+            ShipAddress,
+            ShipCity,
+            ShipRegion,
+            ShipPostalCode,
+            ShipCountry
         };
         const products: IProduct[] = productList
         try {
@@ -47,7 +61,7 @@ class OrderController {
             const result = await orderService.create(newOrder, products);
             res.json({ rowsAffected: result });
         } catch (error) {
-            console.warn('Erro no Customers Controller: create');
+            console.warn('Erro no Orders Controller: create');
             console.error(error);
         }
     }

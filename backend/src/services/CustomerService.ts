@@ -1,3 +1,4 @@
+import { NextFunction } from 'express';
 import { db, TYPES } from '../database';
 import { ICustomer } from '../model/Customer.model';
 
@@ -109,19 +110,19 @@ class CustomerService{
     }
 
     async delete(customerId: string){
-        try {
-            const tra = db.transaction();
-            const transBegin = await tra.begin();
-            const requestBd = transBegin.request();
-            requestBd.input('customerID', TYPES.NVarChar, customerId);
-            const result = await requestBd.query<ICustomer>(`DELETE FROM Customers WHERE CustomerID = @customerID`);
-            await transBegin.commit();
-            
-            return result.rowsAffected;
-        } catch (error) {
-            console.warn('Erro no customer service: delete');
-            console.error(error);
-        }
+        const tra = db.transaction();
+        const transBegin = await tra.begin();
+        const requestBd = transBegin.request();
+        requestBd.input('customerID', TYPES.NVarChar, customerId);
+        const result = await requestBd.query<ICustomer>(`DELETE FROM Customers WHERE CustomerID = @customerID`);
+        await transBegin.commit();
+        
+        return result;
+        // try {
+        // } catch (error) {
+        //     console.warn('Erro no customer service: delete');
+        //     // console.error(error.number);
+        // }
     }
 
 }

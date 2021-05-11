@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { CustomerController } from './controllers/CustomerController';
 import { OrderController } from './controllers/OrderController';
 import { ProductController } from './controllers/ProductController';
+import { errorHandler } from './controllers/ErroController';
 
 const routes = Router();
 
@@ -25,7 +26,13 @@ routes.get('/products', productController.getProduts);
 
 //Rotas para Orders
 routes.get('/orders', orderController.getOrders);
+routes.get('/orderbyid', orderController.getOrderById);
 routes.post('/neworder', orderController.create);
+// --->
+
+// ---> Tratamento de erros
+routes.use(errorHandler);
+
 // --->
 
 export { routes };

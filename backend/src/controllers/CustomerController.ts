@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { CustomerService } from '../services/CustomerService';
 import { ICustomer } from '../model/Customer.model';
 
@@ -102,16 +102,17 @@ class CustomerController {
         }
     }
 
-    async delete(req: Request, res: Response) {
+    async delete(req: Request, res: Response, next: NextFunction) {
         const customerID = req.query.CustomerID;
 
         try {
             const customerService = new CustomerService();
-            const result = await customerService.delete(customerID.toString());
-            res.json({ rowsAffected: result });
+            const rowsAffected = await customerService.delete(customerID.toString());
+            res.json({rowsAffected});
         } catch (error) {
             console.warn('Erro no Customers Controller: delete');
-            console.error(error);
+            next(error);
+            // console.error(error);
         }
     }
 
