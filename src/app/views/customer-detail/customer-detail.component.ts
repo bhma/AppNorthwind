@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
     styleUrls: ['./customer-detail.component.css']
 })
 export class CustomerDetailComponent implements OnInit {
-    
+
     formCustomer: FormGroup;
     customerId: string;
     findedCustomer$: Observable<ICustomer>;
@@ -43,7 +43,7 @@ export class CustomerDetailComponent implements OnInit {
             this.customerId = params.id;
         });
 
-        if(this.customerId !== 'newCustomer'){
+        if (this.customerId !== 'newCustomer') {
             this.findedCustomer$ = this.cS.getCustomerById(this.customerId);
             this.findedCustomer$.subscribe(data => {
                 this.formCustomer.setValue(data);
@@ -51,36 +51,47 @@ export class CustomerDetailComponent implements OnInit {
         }
     }
 
-    onSubmit(){
-        if(!this.formCustomer.dirty){
-            // ativar notificação para usuário
-            this.handleAlert();
-        }else if(this.customerId === 'newCustomer'){
-            // fazer um post para /newcustomer enviando o this.formCustomer.value
+    onSubmit() {
+        if (!this.formCustomer.dirty) {
+            // ativa notificação para usuário
+            this.alertService.alertWarning('Nenhum campo foi modificado. Realize alterações para prosseguir.');
+        } else if (this.customerId === 'newCustomer') {
+            // faz um post para /newcustomer enviando o this.formCustomer.value
             const obsNewCustomer$ = this.cS.saveCustomer(this.formCustomer.value);
-            obsNewCustomer$.subscribe(data => {
-                this.customerId = this.formCustomer.get('CustomerID').value;
-                console.log(data);
-            });
-            // ativar notificação para usuário
-        }else if(this.customerId !== 'newCustomer'){
-            // fazer um put para /updatecustomer enviando o this.formCustomer.value
+            obsNewCustomer$.subscribe(
+                data => {
+                    this.customerId = this.formCustomer.get('CustomerID').value;
+                    // ativa notificação para usuário
+                    this.alertService.alertSuccess('Cliente cadastrado com sucesso! ID do novo cliente: ' + this.customerId);
+                }, error => {
+                    this.alertService.alertDanger(error.message);
+                });
+        } else if (this.customerId !== 'newCustomer') {
+            // faz um put para /updatecustomer enviando o this.formCustomer.value
             const obsUpdtCustomer = this.cS.updateCustomer(this.formCustomer.value);
-            obsUpdtCustomer.subscribe(data => console.log(data));
-            // ativar notificação para usuário
+            obsUpdtCustomer.subscribe(
+                data => {
+                    // ativa notificação para usuário
+                    this.alertService.alertSuccess('Cliente atualizado com sucesso! ID do cliente: ' + this.customerId);
+                }, error => {
+                    console.log(error);
+                    this.alertService.alertDanger(error.message);
+                });
         }
     }
-    onDelete(){
-        if(this.customerId !== 'newCustomer'){
+    onDelete() {
+        if (this.customerId !== 'newCustomer') {
             // chamar função de delete no service
             const obsDelCustomer$ = this.cS.deleteCustomer(this.customerId);
-            obsDelCustomer$.subscribe(data => console.log(data));
-            //notificar usuário
+            obsDelCustomer$.subscribe(
+                data => {
+                    // ativa notificação para usuário
+                    console.log(data);
+                    this.alertService.alertSuccess('Cliente deletado com sucesso! ID do cliente: ' + this.customerId);
+                }, error => {
+                    console.log(error);
+                    this.alertService.alertDanger(error.message);
+                });
         }
     }
-
-    handleAlert(){
-        this.alertService.alertWarning('Nenhum campo foi modificado. Realize alterações para prosseguir.');
-    }
-
 }

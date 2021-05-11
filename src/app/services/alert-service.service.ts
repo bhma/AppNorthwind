@@ -5,6 +5,7 @@ import { AlertModalComponent } from './../views/alert-modal/alert-modal.componen
 enum AlertTypes{
     WARN = 'warning',
     SUCCESS = 'success',
+    DANGER = 'danger',
 }
 
 @Injectable({
@@ -28,5 +29,9 @@ export class AlertService {
 
     alertSuccess(msg: string){
         this.showAlert(msg, AlertTypes.SUCCESS);
+    }
+    
+    alertDanger(msg: string){
+        this.showAlert(msg, AlertTypes.DANGER);
     }
 }

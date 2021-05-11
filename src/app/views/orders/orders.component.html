@@ -17,35 +17,11 @@
                 <th scope="col">Valor do frete</th>
             </thead>
             <tbody>
-                <tr >
-                    <td [routerLink]="['/order', 'NCMA']" class="pointer">10249</td>
-                    <td>TOMSP</td>
-                    <td>1996-07-05</td>
-                    <td>11,6100</td>
-                </tr>
-                <tr>
-                    <td [routerLink]="['/order', 'NCMA']" class="pointer">10249</td>
-                    <td>TOMSP</td>
-                    <td>1996-07-05</td>
-                    <td>11,6100</td>
-                </tr>
-                <tr>
-                    <td [routerLink]="['/order', 'NCMA']" class="pointer">10249</td>
-                    <td>TOMSP</td>
-                    <td>1996-07-05</td>
-                    <td>11,6100</td>
-                </tr>
-                <tr>
-                    <td [routerLink]="['/order', 'NCMA']" class="pointer">10249</td>
-                    <td>TOMSP</td>
-                    <td>1996-07-05</td>
-                    <td>11,6100</td>
-                </tr>
-                <tr>
-                    <td [routerLink]="['/order', 'NCMA']" class="pointer">10249</td>
-                    <td>TOMSP</td>
-                    <td>1996-07-05</td>
-                    <td>11,6100</td>
+                <tr *ngFor="let order of obsOrderList$ | async" >
+                    <td [routerLink]="['/order', 'NCMA']" class="pointer">{{ order.OrderID }}</td>
+                    <td>{{ order.CustomerID }}</td>
+                    <td>{{order.OrderDate}}</td>
+                    <td>{{ order.Freight }}</td>
                 </tr>
             </tbody>
         </table>
