@@ -1,68 +1,62 @@
 <div class="card shadow-sm">
     <div class="card-header">
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
             <h1>
-                <span *ngIf="orderId === 'newOrder'">Nova Compra</span>
-                <span *ngIf="orderId !== 'newOrder'"
+                <span *ngIf="orderId === 0">Nova Compra</span>
+                <span *ngIf="orderId !== 0"
                     >Detalhes da Compra {{ orderId }}</span
                 >
             </h1>
-            <div>
-                <button class="btn btn-danger">
-                    <img src="../../../assets/icons/trash.png" alt="btn excluir" />
-                    Excluir
-                </button>
-            </div>
         </div>
     </div>
     <div class="card-body">
         <form [formGroup]="formOrder" (ngSubmit)="onSubmit()" >
             <div class="row">
                 <div class="form-group col">
-                    <label for="clientId">Id do Cliente</label>
-                    <input formControlName="clientId" id="clientId" type="text" class="form-control">
+                    <label for="CustomerID">Id do Cliente</label>
+                    <input formControlName="CustomerID" id="CustomerID" type="text" class="form-control">
                 </div>
                 <div class="form-group col">
-                    <label for="orderDate">Data da compra</label>
-                    <input formControlName="orderDate" id="orderDate" type="date" class="form-control">
+                    <label for="OrderDate">Data da compra</label>
+                    <input formControlName="OrderDate" id="OrderDate" type="datetime" class="form-control">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col">
-                    <label for="shipDate">Data de envio</label>
-                    <input formControlName="shipDate" id="shipDate" type="date" class="form-control">
+                    <label for="ShippedDate">Data de envio</label>
+                    <input formControlName="ShippedDate" id="ShippedDate" type="datetime" class="form-control">
                 </div>
                 <div class="form-group col">
-                    <label for="freight">Frete</label>
-                    <input formControlName="freight" id="freight" type="number" class="form-control">
+                    <label for="Freight">Frete</label>
+                    <input formControlName="Freight" id="Freight" type="number" class="form-control">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col">
-                    <label for="shipAddress">Endereço de destino</label>
-                    <input formControlName="shipAddress" id="shipAddress" type="text" class="form-control">
+                    <label for="ShipAddress">Endereço de destino</label>
+                    <input formControlName="ShipAddress" id="ShipAddress" type="text" class="form-control">
                 </div>
                 <div class="form-group col">
-                    <label for="shipCity">Cidade de destino</label>
-                    <input formControlName="shipCity" id="shipCity" type="text" class="form-control">
+                    <label for="ShipCity">Cidade de destino</label>
+                    <input formControlName="ShipCity" id="ShipCity" type="text" class="form-control">
                 </div>
                 <div class="form-group col">
-                    <label for="shipRegion">Região de destino</label>
-                    <input formControlName="shipRegion" id="shipRegion" type="text" class="form-control">
+                    <label for="ShipRegion">Região de destino</label>
+                    <input formControlName="ShipRegion" id="ShipRegion" type="text" class="form-control">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col">
-                    <label for="shipPostalCode">Código postal de destino</label>
-                    <input formControlName="shipPostalCode" id="shipPostalCode" type="text" class="form-control">
+                    <label for="ShipPostalCode">Código postal de destino</label>
+                    <input formControlName="ShipPostalCode" id="ShipPostalCode" type="text" class="form-control">
                 </div>
                 <div class="form-group col">
-                    <label for="shipCountry">País de destino</label>
-                    <input formControlName="shipCountry" id="shipCountry" type="text" class="form-control">
+                    <label for="ShipCountry">País de destino</label>
+                    <input formControlName="ShipCountry" id="ShipCountry" type="text" class="form-control">
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-7">
+                <div *ngIf="orderId === 0" class="col-md-7">
                     <h3>
                         Produtos
                     </h3>
@@ -82,15 +76,14 @@
                                     <button class="btn btn-success" >
                                         <img class="text-white" src="../../../assets/icons/plus.svg" alt="icone mais">
                                     </button>
-                                    <!-- <button class="btn btn-danger" >
-                                        <img class="text-white" src="../../../assets/icons/trash.png" alt="icone mais">
-                                    </button> -->
+                                    
                                 </td>
                             </tr>
                         </tbody>
                     </table>
+                    <pagination class="d-flex justify-content-center" [totalItems]="TOTAL_ITEMS" [itemsPerPage]="ITENS_PER_PAGE" [maxSize]="MAX_SIZE" [directionLinks]="DIRECTION_LINKS" [boundaryLinks]="BOUNDARY_LINKS" firstText="&laquo;" lastText="&raquo;" (pageChanged)="pageChangedProduct($event)" ></pagination>
                 </div>
-                <div class="col-md-5">
+                <div class="col">
                     <h3>
                         Itens da Compra
                     </h3>
@@ -98,13 +91,13 @@
                         <thead>
                             <th scope="col">Nome do Produto</th>
                             <th scope="col">Quantidade</th>
-                            <th scope="col">Remover</th>
+                            <th *ngIf="orderId === 0" scope="col">Remover</th>
                         </thead>
                         <tbody>
                             <tr >
                                 <td [routerLink]="['/product', '']" class="pointer">Chef Anton's Cajun Seasoning</td>
                                 <td>53</td>
-                                <td class="d-flex justify-content-center">
+                                <td *ngIf="orderId === 0" class="d-flex justify-content-center">
                                     <button class="btn btn-danger" >
                                         <img class="text-white" src="../../../assets/icons/trash.png" alt="icone mais">
                                     </button>
@@ -112,10 +105,11 @@
                             </tr>
                         </tbody>
                     </table>
+                    <pagination class="d-flex justify-content-center" [totalItems]="TOTAL_ITEMS" [itemsPerPage]="ITENS_PER_PAGE" [maxSize]="MAX_SIZE" [directionLinks]="DIRECTION_LINKS" [boundaryLinks]="BOUNDARY_LINKS" firstText="&laquo;" lastText="&raquo;" (pageChanged)="pageChangeditems($event)" ></pagination>
                 </div>
             </div>
             <div class="w-100 d-flex justify-content-center">
-                <button class="btn btn-success mr-2" type="submit">
+                <button *ngIf="orderId === 0" class="btn btn-success mr-2" type="submit">
                     <img
                         src="../../../assets/icons/save-24.png"
                         alt="btn salvar"

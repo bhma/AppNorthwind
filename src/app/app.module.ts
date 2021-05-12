@@ -16,7 +16,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     AppRoutingModule,
     ViewsModule,
     HttpClientModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

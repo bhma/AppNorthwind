@@ -15,7 +15,6 @@ export class CustomerDetailComponent implements OnInit {
 
     formCustomer: FormGroup;
     customerId: string;
-    findedCustomer$: Observable<ICustomer>;
 
     constructor(
         private actRoute: ActivatedRoute,
@@ -44,10 +43,10 @@ export class CustomerDetailComponent implements OnInit {
         });
 
         if (this.customerId !== 'newCustomer') {
-            this.findedCustomer$ = this.cS.getCustomerById(this.customerId);
-            this.findedCustomer$.subscribe(data => {
-                this.formCustomer.setValue(data);
-            })
+            this.cS.getCustomerById(this.customerId)
+                .subscribe(data => {
+                    this.formCustomer.setValue(data);
+                });
         }
     }
 

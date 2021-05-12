@@ -10,9 +10,9 @@ import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { FooterComponent } from './footer/footer.component';
-import { NgxPaginationModule } from 'ngx-pagination';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlertModalComponent } from './alert-modal/alert-modal.component';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 
 @NgModule({
@@ -31,8 +31,8 @@ import { AlertModalComponent } from './alert-modal/alert-modal.component';
   imports: [
     CommonModule,
     AppRoutingModule,
-    NgxPaginationModule,
     ReactiveFormsModule,
+    PaginationModule
   ],
   exports: [
       MenuBarComponent,

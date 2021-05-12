@@ -19,7 +19,7 @@ class OrderController {
 
     async getOrderById(req: Request, res: Response) {
         try {
-            const OrderID = parseInt(req.params.OrderID);
+            const OrderID = parseInt(req.query.OrderID.toString());
             const orderService = new OrderService();
             const orderList = await orderService.getOrderById(OrderID);
             const orderFinded = orderList.find(order => order.OrderID === OrderID);

@@ -9,7 +9,7 @@
                 Adinionar
             </button>
         </div>
-        <table class="table table-striped">
+        <table class="table table-hover table-striped">
             <thead>
                 <th scope="col">ID da compra</th>
                 <th scope="col">ID do cliente</th>
@@ -17,13 +17,14 @@
                 <th scope="col">Valor do frete</th>
             </thead>
             <tbody>
-                <tr *ngFor="let order of obsOrderList$ | async" >
-                    <td [routerLink]="['/order', 'NCMA']" class="pointer">{{ order.OrderID }}</td>
+                <tr *ngFor="let order of listPage" >
+                    <td [routerLink]="['/order', order.OrderID]" class="pointer">{{ order.OrderID }}</td>
                     <td>{{ order.CustomerID }}</td>
-                    <td>{{order.OrderDate}}</td>
+                    <td>{{ order.OrderDate | date: 'dd/MMM/yyyy'}}</td>
                     <td>{{ order.Freight }}</td>
                 </tr>
             </tbody>
         </table>
+        <pagination class="d-flex justify-content-center" [totalItems]="TOTAL_ITEMS" [itemsPerPage]="ITENS_PER_PAGE" [maxSize]="MAX_SIZE" [directionLinks]="DIRECTION_LINKS" [boundaryLinks]="BOUNDARY_LINKS" firstText="&laquo;" lastText="&raquo;" (pageChanged)="pageChanged($event)" ></pagination>
     </div>
 </div>

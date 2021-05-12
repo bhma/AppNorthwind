@@ -1,3 +1,4 @@
+import { IProduct } from './../../../backend/src/model/Product.model';
 import { take } from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { IOrder } from '../model/Order.model';
@@ -27,8 +28,13 @@ export class OrderService {
         .pipe(take(1));
     }
 
-    saveOrder(){
-
+    saveOrder(newOrder: IOrder, productList: IProduct[]){
+        let objOrder = {
+            ...newOrder,
+            productList: productList
+        }
+        return this.http.post<IOrder>(`${this.API}/neworder`, objOrder)
+        .pipe(take(1));
     }
 
     updateOrder(){

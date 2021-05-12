@@ -14,7 +14,7 @@
                 Adinionar
             </button>
         </div>
-        <table class="table table-striped">
+        <table class="table table-hover table-striped">
             <thead>
                 <th scope="col">Nome da Empresa</th>
                 <th scope="col">Nome para contato</th>
@@ -22,7 +22,7 @@
                 <th scope="col">Telefone</th>
             </thead>
             <tbody>
-                <tr *ngFor="let c of customerList$ | async | paginate: { itemsPerPage: 10, currentPage: pagAtual }" >
+                <tr *ngFor="let c of listPage" >
                     <td [routerLink]="['/customer', c.CustomerID]" class="pointer">
                         {{ c.CompanyName }}
                     </td>
@@ -32,6 +32,8 @@
                 </tr>
             </tbody>
         </table>
-        <pagination-controls class="pagination page-item page-item-current justify-content-center" (pageChange)="pagAtual = $event" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
+        
+        <pagination class="d-flex justify-content-center" [totalItems]="TOTAL_ITEMS" [itemsPerPage]="ITENS_PER_PAGE" [maxSize]="MAX_SIZE" [directionLinks]="DIRECTION_LINKS" [boundaryLinks]="BOUNDARY_LINKS" firstText="&laquo;" lastText="&raquo;" (pageChanged)="pageChanged($event)" ></pagination>
+
     </div>
 </div>

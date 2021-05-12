@@ -3,7 +3,7 @@ export interface IOrder{
     CustomerID: string;
     EmployeeID?: number;
     OrderDate: Date;
-    RequireDate?: Date;
+    RequiredDate?: Date;
     ShippedDate: Date;
     ShipVia?: number;
     Freight: number;
