@@ -1,3 +1,4 @@
+import { ProductService } from './../../services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -13,24 +14,31 @@ export class ProductDetailComponent implements OnInit {
 
     constructor(
         private actRoute: ActivatedRoute,
-        private fb: FormBuilder
+        private fb: FormBuilder,
+        private pService: ProductService
     ) { }
 
     ngOnInit(): void {
+        this.formProduct = this.fb.group({
+            ProductID: [null],
+            ProductName: [null],
+            SupplierID: [null],
+            CategoryID: [null],
+            QuantityPerUnit: [null],
+            UnitPrice: [null],
+            UnitsInStock: [null],
+            UnitsOnOrder: [null],
+            ReorderLevel: [null],
+            Discontinued: [null],
+        });
+
         this.actRoute.params.subscribe((param) => {
             this.productId = param.id;
         });
 
-        this.formProduct = this.fb.group({
-            productId: [null],
-            productName: [null],
-            suplierId: [null],
-            categoryId: [null],
-            qtdPerUnit: [null],
-            unitPrice: [null],
-            untilInStok: [null],
-            onOrder: [null],
-        });
+        this.pService.getProductById(this.productId)
+            .subscribe(data => {
+                this.formProduct.setValue(data);
+            });
     }
-
 }

@@ -16,17 +16,17 @@
                 <th scope="col">Qtd. em estoque</th>
             </thead>
             <tbody>
-                <tr *ngFor="let p of Products" >
-                    <td>{{ p.productID }}</td>
-                    <td [routerLink]="['/product', 1]" class="pointer">{{ p.productName }}</td>
-                    <td>{{ p.suplierID }}</td>
-                    <td>{{ p.categoryID }}</td>
-                    <td>{{ p.qtdPerUnit }}</td>
-                    <td>{{ p.unitPrice }}</td>
-                    <td>{{ p.qtdStok }}</td>
+                <tr *ngFor="let p of listPage" >
+                    <td>{{ p.ProductID }}</td>
+                    <td [routerLink]="['/product', p.ProductID]" class="pointer">{{ p.ProductName }}</td>
+                    <td>{{ p.SupplierID }}</td>
+                    <td>{{ p.CategoryID }}</td>
+                    <td>{{ p.QuantityPerUnit }}</td>
+                    <td>{{ p.UnitPrice }}</td>
+                    <td>{{ p.UnitsInStock }}</td>
                 </tr>
             </tbody>
         </table>
-       
+        <pagination class="d-flex justify-content-center" [totalItems]="TOTAL_ITEMS" [itemsPerPage]="ITENS_PER_PAGE" [maxSize]="MAX_SIZE" [directionLinks]="DIRECTION_LINKS" [boundaryLinks]="BOUNDARY_LINKS" firstText="&laquo;" lastText="&raquo;" (pageChanged)="pageChanged($event)" ></pagination>
     </div>
 </div>

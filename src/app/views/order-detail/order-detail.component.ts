@@ -1,12 +1,13 @@
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ProductService } from './../../services/product.service';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
-import { IProduct } from './../../../../backend/src/model/Product.model';
 import { AlertService } from './../../services/alert-service.service';
 import { OrderService } from './../../services/order.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Product } from '../products/Product.model';
+import { IOrderDetail } from './../../model/OrderDetail.model';
+import { IProduct } from './../../model/Product.model';
 
 @Component({
     selector: 'app-order-detail',
@@ -14,27 +15,33 @@ import { Product } from '../products/Product.model';
     styleUrls: ['./order-detail.component.css']
 })
 export class OrderDetailComponent implements OnInit {
-    
+
     readonly ITENS_PER_PAGE: number = 10;
     readonly MAX_SIZE: number = 5;
     readonly DIRECTION_LINKS: boolean = true;
     readonly BOUNDARY_LINKS: boolean = true;
     TOTAL_ITEMS: number;
     TOTAL_PRODU: number;
-    listProduct: IProduct[];
     listPageProduct: IProduct[];
-    listPageItems: IProduct[]
-    
+    listPageItems: IOrderDetail[] = [];
+    listProduct: IProduct[] = [];
+    listProductByOrder: IOrderDetail[] = [];
+
     formOrder: FormGroup;
     productList: IProduct[];
     orderId: number;
+    editListModal: BsModalRef;
+    modalConfig = {
+        class: 'modal-xl'
+    }
 
     constructor(
         private actRoute: ActivatedRoute,
         private fb: FormBuilder,
         private oService: OrderService,
+        private alertService: AlertService,
         private pService: ProductService,
-        private alertService: AlertService
+        private modalService: BsModalService
     ) { }
 
     ngOnInit(): void {
@@ -59,43 +66,101 @@ export class OrderDetailComponent implements OnInit {
             this.orderId = parseInt(param.id);
         });
 
-        if (this.orderId !== 0) {
+        this.loadData();
+    }
+
+    onSubmit() {
+        if (!this.formOrder.dirty) {
+            // ativa notificação para usuário
+            this.alertService.alertWarning('Nenhum campo foi modificado. Realize alterações para prosseguir.');
+        } else if (!this.existOrder()) {
+            this.oService.saveOrder(this.formOrder.value, this.listProductByOrder)
+                .subscribe(
+                    data => {
+                        this.orderId = data.OrderID;
+                        this.alertService.alertSuccess('Compra realizada com sucesso. ID da nova compra: ' + this.orderId);
+                    }, error => {
+                        this.alertService.alertDanger(error);
+                    });
+        }
+    }
+
+    loadData() {
+        if (this.existOrder()) {
             this.oService.getOrderById(this.orderId)
                 .subscribe(data => {
                     this.formOrder.setValue(data);
                 });
-        }else {
-            // this.pService.getProducts()
+            this.pService.getProductsByOrderId(this.orderId)
+                .subscribe(data => {
+                    this.listProductByOrder = data;
+                    this.TOTAL_ITEMS = this.listProductByOrder.length;
+                    this.listPageItems = this.listProductByOrder.slice(0, this.ITENS_PER_PAGE);
+                });
+        } else {
+            this.pService.getProducts()
+                .subscribe(data => {
+                    this.listProduct = data;
+                    this.TOTAL_PRODU = this.listProduct.length;
+                    this.listPageProduct = this.listProduct.slice(0, this.ITENS_PER_PAGE);
+                });
         }
-
     }
 
-    onSubmit() {
-        if(!this.formOrder.dirty){
-            // ativa notificação para usuário
-            this.alertService.alertWarning('Nenhum campo foi modificado. Realize alterações para prosseguir.');
-        } else if(this.orderId === 0){
-            this.oService.saveOrder(this.formOrder.value, this.productList)
-            .subscribe(
-                data => {
-                    this.orderId = data.OrderID;
-                    this.alertService.alertSuccess('Compra realizada com sucesso. ID da nova compra: ' + this.orderId);
-            }, error => {
-                this.alertService.alertDanger(error);
-            });
-        }
+    openModal(template: TemplateRef<any>) {
+        this.editListModal = this.modalService.show(template, this.modalConfig);
+        this.listPageProduct = this.listProduct.slice(0, this.ITENS_PER_PAGE);
     }
 
     pageChangedProduct(event: PageChangedEvent) {
         const startItem = (event.page - 1) * event.itemsPerPage;
         const endItem = event.page * event.itemsPerPage;
-        // this.listPageProduct = this.orderList.slice(startItem, endItem);
+        this.listPageProduct = this.listProduct.slice(startItem, endItem);
     }
 
-    pageChangeditems(event: PageChangedEvent){
+    pageChangeditems(event: PageChangedEvent) {
         const startItem = (event.page - 1) * event.itemsPerPage;
         const endItem = event.page * event.itemsPerPage;
-        // this.listPageItems = this.orderList.slice(startItem, endItem);
+        this.listPageItems = this.listProductByOrder.slice(startItem, endItem);
+    }
+
+    existOrder() {
+        return this.orderId !== 0;
+    }
+
+    existListPageitems() {
+        return this.listPageItems.length !== 0;
+    }
+
+    removeProduct(productID: number){
+        let indexP = this.listProductByOrder.findIndex(p => p.ProductID === productID);
+        this.listProductByOrder.splice(indexP, 1);
+        this.updateTableItems();
+    }
+
+    addProduct({ ProductID, ProductName, UnitPrice }: IProduct) {
+        let indexP = this.listProductByOrder.findIndex(p => p.ProductID === ProductID);
+        if (indexP === -1) {
+            const newOrderDetail = {
+                OrderID: this.orderId,
+                ProductID: ProductID,
+                ProductName: ProductName,
+                Quantity: 1,
+                UnitPrice: UnitPrice,
+                Discount: 0
+            }
+            this.listProductByOrder.push(newOrderDetail);
+        } else {
+            let updateOD = this.listProductByOrder.find(p => p.ProductID === ProductID);
+            updateOD.Quantity++;
+            this.listProductByOrder.splice(indexP, 1, updateOD);
+        }
+        this.updateTableItems();
+    }
+
+    updateTableItems() {
+        this.TOTAL_ITEMS = this.listProductByOrder.length;
+        this.listPageItems = this.listProductByOrder.slice(0, this.ITENS_PER_PAGE);
     }
 
 }

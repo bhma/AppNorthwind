@@ -4,10 +4,9 @@ export interface IProduct{
     SupplierID: number;
     CategoryID: number;
     QuantityPerUnit: string;
-    UnitPrice: string;
+    UnitPrice: number;
     UnitsInStock: number;
     UnitsOnOrder: number;
     ReorderLevel: number;
     Discontinued: boolean;
-    qtdOrdered: number;
 }

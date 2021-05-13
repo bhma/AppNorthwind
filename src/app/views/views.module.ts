@@ -13,6 +13,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlertModalComponent } from './alert-modal/alert-modal.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     CommonModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    PaginationModule
+    PaginationModule,
+    ModalModule
   ],
   exports: [
       MenuBarComponent,
