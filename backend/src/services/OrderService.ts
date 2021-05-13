@@ -32,7 +32,7 @@ class OrderService{
         }
     }
 
-    async create(order: IOrder, productList: IProduct[]){
+    async create(order: IOrder, productList: IOrderDetail[]){
         const {
             CustomerID,
             OrderDate,
@@ -50,8 +50,8 @@ class OrderService{
             const transOrderBegin = await transactionOrder.begin();
             const requestOrderBd = transOrderBegin.request();
             requestOrderBd.input('customerID', TYPES.NVarChar, CustomerID);
-            requestOrderBd.input('orderDate', TYPES.Date, OrderDate);
-            requestOrderBd.input('shippedDate', TYPES.Date, ShippedDate);
+            requestOrderBd.input('orderDate', TYPES.DateTime, OrderDate);
+            requestOrderBd.input('shippedDate', TYPES.DateTime, ShippedDate);
             requestOrderBd.input('freight', TYPES.Real, Freight);
             requestOrderBd.input('shipAddress', TYPES.NVarChar, ShipAddress);
             requestOrderBd.input('shipCity', TYPES.NVarChar, ShipCity);
@@ -85,8 +85,8 @@ class OrderService{
                     orderID: insertedOrderID,
                     productID: product.ProductID,
                     unitPrice: product.UnitPrice,
-                    qtd: product.qtdOrdered,
-                    discount: 0
+                    qtd: product.Quantity,
+                    discount: product.Discount
                 });
             }
             await preparedStatementOD.unprepare();

@@ -1,7 +1,8 @@
 export interface IOrderDetail {
-    orderID: number;
-    productID: number;
-    unitPrice: number;
-    qtd: number;
-    discount: number;
+    OrderID: number;
+    ProductID: number
+    ProductName?: string;
+    Quantity: number;
+    UnitPrice: number;
+    Discount: number;
 }

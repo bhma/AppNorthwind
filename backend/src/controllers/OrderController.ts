@@ -1,6 +1,6 @@
+import { IOrderDetail } from './../model/OrderDetail.model';
 import { IOrder } from './../model/Order.model';
 import { Request, Response } from 'express';
-import { ICustomer } from '../model/Customer.model';
 import { OrderService } from '../services/OrderService';
 import { IProduct } from './../model/Product.model';
 
@@ -14,6 +14,7 @@ class OrderController {
         } catch (error) {
             console.warn('Erro no Orders Controller: get Orders');
             console.error(error);
+            res.json(error);
         }
     }
 
@@ -27,10 +28,11 @@ class OrderController {
         } catch (error) {
             console.warn('Erro no Order Controller: get Order by id');
             console.error(error);
+            res.json(error);
         }
 
     }
-
+    
     async create(req: Request, res: Response) {
         const {
             CustomerID,
@@ -55,7 +57,7 @@ class OrderController {
             ShipPostalCode,
             ShipCountry
         };
-        const products: IProduct[] = productList
+        const products: IOrderDetail[] = productList
         try {
             const orderService = new OrderService();
             const result = await orderService.create(newOrder, products);
@@ -63,6 +65,7 @@ class OrderController {
         } catch (error) {
             console.warn('Erro no Orders Controller: create');
             console.error(error);
+            res.json(error);
         }
     }
 

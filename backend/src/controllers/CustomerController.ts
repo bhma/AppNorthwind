@@ -12,6 +12,7 @@ class CustomerController {
         } catch (error) {
             console.warn('Erro no Customers Controller: get Customers');
             console.error(error);
+            res.json(error);
         }
     }
 
@@ -25,6 +26,7 @@ class CustomerController {
         } catch (error) {
             console.warn('Erro no Customers Controller: get Customers');
             console.error(error);
+            res.json(error);
         }
     }
 
@@ -62,6 +64,7 @@ class CustomerController {
         } catch (error) {
             console.warn('Erro no Customers Controller: create');
             console.error(error);
+            res.json(error);
         }
     }
 
@@ -99,6 +102,7 @@ class CustomerController {
         } catch (error) {
             console.warn('Erro no Customers Controller: update');
             console.error(error);
+            res.json(error);
         }
     }
 
@@ -111,8 +115,8 @@ class CustomerController {
             res.json({rowsAffected});
         } catch (error) {
             console.warn('Erro no Customers Controller: delete');
-            next(error);
-            // console.error(error);
+            console.error(error);
+            res.json(error);
         }
     }
 

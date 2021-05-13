@@ -23,6 +23,8 @@ routes.delete('/delcustomer', customerController.delete);
 
 // Rotas para Products
 routes.get('/products', productController.getProduts);
+routes.get('/productbyid', productController.getProductById);
+routes.get('/productbyorder', productController.getProductsByOrderId);
 
 //Rotas para Orders
 routes.get('/orders', orderController.getOrders);
