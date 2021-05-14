@@ -3,6 +3,7 @@ import { CustomerController } from './controllers/CustomerController';
 import { OrderController } from './controllers/OrderController';
 import { ProductController } from './controllers/ProductController';
 import { errorHandler } from './controllers/ErroController';
+import { ReportController } from './controllers/ReportController';
 
 const routes = Router();
 
@@ -10,6 +11,7 @@ const routes = Router();
 const customerController = new CustomerController();
 const productController = new ProductController();
 const orderController = new OrderController()
+const reportController = new ReportController();
 // --->
 
 // ---> Definição das rotas (get, post, put, delete)
@@ -26,10 +28,14 @@ routes.get('/products', productController.getProduts);
 routes.get('/productbyid', productController.getProductById);
 routes.get('/productbyorder', productController.getProductsByOrderId);
 
-//Rotas para Orders
+// Rotas para Orders
 routes.get('/orders', orderController.getOrders);
 routes.get('/orderbyid', orderController.getOrderById);
 routes.post('/neworder', orderController.create);
+// --->
+
+// Rota para relatório
+routes.get('/reportcategories', reportController.getReportCategories);
 // --->
 
 // ---> Tratamento de erros
