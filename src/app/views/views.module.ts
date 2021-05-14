@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AlertModalComponent } from './alert-modal/alert-modal.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     ProductDetailComponent,
     FooterComponent,
     AlertModalComponent,
+    DashboardComponent,
   ],
   imports: [
     CommonModule,

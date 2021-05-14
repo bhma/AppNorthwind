@@ -1,0 +1,24 @@
+.divChart{
+    position: relative;
+    height: 40vh;
+}
+
+.bg-st{
+    background-color: rgba(255, 99, 132, 0.2);
+    border-color: rgba(255, 99, 132);
+}
+
+.bg-nd{
+    background-color: rgba(54, 162, 235, 0.2);
+    border-color: rgba(54, 162, 235);
+}
+
+.bg-rd{
+    background-color: rgba(255, 206, 86, 0.2);
+    border-color: rgba(255, 206, 86);
+}
+
+.bg-th{
+    background-color: rgba(75, 192, 192, 0.2);
+    border-color: rgba(75, 192, 192);
+}

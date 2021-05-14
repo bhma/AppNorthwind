@@ -1,3 +1,4 @@
+import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CustomerDetailComponent } from './views/customer-detail/customer-detail.component';
@@ -20,6 +21,8 @@ const routes: Routes = [
     
     { path: 'products', component: ProductsComponent },
     { path: 'product/:id', component: ProductDetailComponent },
+
+    { path: 'dashboard', component: DashboardComponent },
     
     { path: '', pathMatch: 'full', redirectTo: 'home' },
 ];

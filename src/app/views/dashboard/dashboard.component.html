@@ -1,0 +1,53 @@
+<div class="row px-5 mb-3">
+    <div class="col-12">
+        <h2 class="display-4" >Categorias mais vendidas</h2>
+    </div>
+</div>
+<div class="row mb-4">
+    <div class="col d-flex justify-content-center">
+        <div class="card shadow-sm w-75 bg-st">
+            <div class="card-body text-dark text-right">
+                <span class="display-4 d-block" >{{ first.qtdSaled }}</span>
+                {{ first.categoryName }}
+            </div>
+        </div>
+    </div>
+    <div class="col d-flex justify-content-center">
+        <div class="card shadow-sm w-75 bg-nd">
+            <div class="card-body text-dark text-right">
+                <span class="display-4 d-block" >{{ second.qtdSaled }}</span>
+                {{ second.categoryName }}
+            </div>
+        </div>
+    </div>
+    <div class="col d-flex justify-content-center">
+        <div class="card shadow-sm w-75 bg-rd">
+            <div class="card-body text-dark text-right">
+                <span class="display-4 d-block" >{{ third.qtdSaled }}</span>
+                {{ third.categoryName }}
+            </div>
+        </div>
+    </div>
+    <div class="col d-flex justify-content-center">
+        <div class="card shadow-sm w-75 bg-th">
+            <div class="card-body text-dark text-right">
+                <span class="display-4 d-block" >{{ fourth.qtdSaled }}</span>
+                {{ fourth.categoryName }}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row px-5">
+    <div class="col-12">
+        <h3 class="display-4">
+            Produtos vendidos por categoria
+        </h3>
+    </div>
+</div>
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="divChart" style="width: 100%; height: 50vh;">
+            <canvas #chartCategory ></canvas>
+        </div>
+    </div>
+</div>
