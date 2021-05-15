@@ -68,28 +68,18 @@ class OrderService{
             const insertedOrderID = resultOrder.recordset[0].OrderID;
             
             // Cria uma prepared statement na tabela Orders_Detail
+            let queryString: string = 'INSERT INTO [Order Details] (OrderID, ProductID, UnitPrice, Quantity, Discount) VALUES ';
             const transactionOD = db.transaction();
             const transactionODBegin = await transactionOD.begin();
-            const preparedStatementOD = new PreparedStatement(transactionODBegin);
-            preparedStatementOD.input('orderID', TYPES.Int);
-            preparedStatementOD.input('productID', TYPES.Int);
-            preparedStatementOD.input('unitPrice', TYPES.Real);
-            preparedStatementOD.input('qtd', TYPES.Int);
-            preparedStatementOD.input('discount', TYPES.Real);
-            await preparedStatementOD.prepare(`
-                INSERT INTO [Order Details] (OrderID, ProductID, UnitPrice, Quantity, Discount)
-                VALUES (@orderID, @productID, @unitPrice, @qtd, @discount);
-            `);
-            for (const product of productList) {
-                const resultOD = await preparedStatementOD.execute<IOrderDetail>({
-                    orderID: insertedOrderID,
-                    productID: product.ProductID,
-                    unitPrice: product.UnitPrice,
-                    qtd: product.Quantity,
-                    discount: product.Discount
-                });
+            const requestOD = transactionODBegin.request();
+
+            for (let i = 0; i < productList.length; i++) {
+                queryString += `(${insertedOrderID}, ${productList[i].ProductID}, ${productList[i].UnitPrice}, ${productList[i].Quantity}, ${productList[i].Discount})`;
+                if(!(i+1 === productList.length)){
+                    queryString += ', ';
+                }
             }
-            await preparedStatementOD.unprepare();
+            await requestOD.query<IOrderDetail>(queryString);
             await transactionODBegin.commit();
             
             return resultOrder.rowsAffected;
