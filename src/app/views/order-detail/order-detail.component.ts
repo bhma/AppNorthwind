@@ -27,6 +27,7 @@ export class OrderDetailComponent implements OnInit {
     listProduct: IProduct[] = [];
     listProductByOrder: IOrderDetail[] = [];
 
+
     formOrder: FormGroup;
     productList: IProduct[];
     orderId: number;
@@ -161,6 +162,11 @@ export class OrderDetailComponent implements OnInit {
     updateTableItems() {
         this.TOTAL_ITEMS = this.listProductByOrder.length;
         this.listPageItems = this.listProductByOrder.slice(0, this.ITENS_PER_PAGE);
+    }
+
+    formtDiscount(discount: number){
+        let percent = discount * 100;
+        return percent.toString + '%'
     }
 
 }
