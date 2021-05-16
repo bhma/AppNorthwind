@@ -28,6 +28,7 @@ export class OrderDetailComponent implements OnInit {
     listProductByOrder: IOrderDetail[] = [];
 
 
+
     formOrder: FormGroup;
     productList: IProduct[];
     orderId: number;
