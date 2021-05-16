@@ -2,9 +2,21 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
 
-## Development server
+## Starting project
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Para iniciar o frontend do projeto rode o comando `npm run start` ou `yarn start`, na raiz do projeto.
+
+Acesse http://localhost:4200 para vizualisar.
+
+O script `start` usa a flag proxy que mostra ao angular quais configurações de proxy usar.
+
+O proxy é necessário para usar o backend em domínios diferentes, sem habilitar o cors.
+
+Para iniciar o backend do projeto rode o comando `npm run dev` ou `yarn dev`, na pasta backend.
+
+## Example
+
+Acesse https://youtu.be/0xzF6eQR40g para ver o projeto rodando e algumas explicações.
 
 ## Code scaffolding
 
